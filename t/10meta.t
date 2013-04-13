@@ -124,6 +124,15 @@ my @tests = (
             '_nick'    => 'bam',
         } => 'bidule chose chouette'
     ],
+    [   {   'body'     => 'meta themes?',
+            'raw_nick' => 'BooK!~book@d83-179-185-40.cust.tele2.fr',
+            'who'      => 'BooK',
+            'address'  => 'msg',
+            'channel'  => 'msg',
+            'raw_body' => 'meta themes?',
+            '_nick'    => 'bam',
+        } => join( ' ', 'Available themes:', Acme::MetaSyntactic->themes )
+    ],
 );
 
 plan tests => @tests + 1;

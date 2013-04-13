@@ -63,6 +63,9 @@ sub told {
             if !$self->{meta}{main}->has_theme($theme);
         return join " ", $self->{meta}{theme}{$command}->name(@args);
     }
+    elsif ( $command =~ /^themes\?$/ ) {
+        return join ' ', 'Available themes:', $self->{meta}{main}->themes();
+    }
 
     # TODO: other commands
     # - version?            : list all versions
