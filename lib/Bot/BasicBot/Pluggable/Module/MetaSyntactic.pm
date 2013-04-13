@@ -57,6 +57,14 @@ sub told {
         $self->{meta}{theme}{$command} //= _load_theme($theme, $category);
         return "No such theme: $theme"
             if !$self->{meta}{main}->has_theme($theme);
+        if ( $category && $self->{meta}{theme}{$command}
+            ->isa('Acme::MetaSyntactic::MultiList')
+            && !grep { $_ eq $category }
+            $self->{meta}{theme}{$command}->categories )
+        {
+            delete $self->{meta}{theme}{$command};
+            return "No such theme/category: $theme/$category";
+        }
         my $num = 0 + ( shift @args // 1 );
         $num = $self->{meta}{limit} if $num > $self->{meta}{limit};
         return join ' ', $self->{meta}{theme}{$command}->name($num);

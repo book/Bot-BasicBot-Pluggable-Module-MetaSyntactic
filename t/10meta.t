@@ -178,6 +178,15 @@ my @tests = (
             '_nick'    => 'bam',
         } => 'No such theme: this_theme_does_not_exist'
     ],
+    [   {   'body'     => 'meta foo/de 3',
+            'raw_nick' => 'BooK!~book@d83-179-185-40.cust.tele2.fr',
+            'who'      => 'BooK',
+            'address'  => 'msg',
+            'channel'  => 'msg',
+            'raw_body' => 'meta foo/de 3',
+            '_nick'    => 'bam',
+        } => 'No such theme/category: foo/de'
+    ],
 );
 
 plan tests => @tests + 1;
