@@ -78,13 +78,6 @@ sub told {
         return join ' ', "Categories for $theme:",
             sort $self->{meta}{theme}{$theme}->categories;
     }
-
-    # TODO: other commands
-    # - version?            : list all versions
-    # - themes?             : list all known themes
-    # - categories? <theme> : list all categories for the theme
-
-    return;
 }
 
 sub _load_theme {
