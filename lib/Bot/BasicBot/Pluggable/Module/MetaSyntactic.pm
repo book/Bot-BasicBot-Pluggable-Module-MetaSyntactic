@@ -54,10 +54,11 @@ sub told {
     # it's a theme
     if ( $command =~ /^[\w\/]+$/ ) {
         my ( $theme, $category ) = split m'/', $command, 2;
-        $self->{meta}{theme}{$command} ||= do {
+        $self->{meta}{theme}{$command} //= do {
             my $module = "Acme::MetaSyntactic::$theme";
-            eval "require $module" or die;
-            $module->new( ( category => $category ) x !!$category );
+            eval "require $module"
+                ? $module->new( ( category => $category )x!! $category )
+                : '';
         };
         return "No such theme: $theme"
             if !$self->{meta}{main}->has_theme($theme);
