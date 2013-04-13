@@ -138,7 +138,7 @@ my @tests = (
             'who'      => 'BooK',
             'address'  => 'msg',
             'channel'  => 'msg',
-            'raw_body' => 'meta themes?',
+            'raw_body' => 'meta this_theme_does_not_exist',
             '_nick'    => 'bam',
         } => 'No such theme: this_theme_does_not_exist'
     ],
