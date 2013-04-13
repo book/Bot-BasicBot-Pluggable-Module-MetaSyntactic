@@ -135,6 +135,20 @@ return one or more items from the theme sub-categories.
 The bot maintains state for each theme/category, so items can be picked
 from sub-categories of the same theme independently.
 
+=head2 Meta (sic) commands
+
+These commands allow to query the L<Acme::MetaSyntactic> themes:
+
+=over 4
+
+=item C<meta themes?>
+
+return the list of available themes.
+
+=item C<meta categories? I<theme>>
+
+return the list of categories of the given theme.
+
 =back
 
 =cut
