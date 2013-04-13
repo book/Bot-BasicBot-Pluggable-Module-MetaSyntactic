@@ -62,7 +62,9 @@ sub told {
         };
         return "No such theme: $theme"
             if !$self->{meta}{main}->has_theme($theme);
-        return join " ", $self->{meta}{theme}{$command}->name(@args);
+        my $num = 0 + ( shift @args // 1 );
+        $num = $self->{meta}{limit} if $num > $self->{meta}{limit};
+        return join ' ', $self->{meta}{theme}{$command}->name($num);
     }
     elsif ( $command =~ /^themes\?$/ ) {
         return join ' ', 'Available themes:', $self->{meta}{main}->themes();
