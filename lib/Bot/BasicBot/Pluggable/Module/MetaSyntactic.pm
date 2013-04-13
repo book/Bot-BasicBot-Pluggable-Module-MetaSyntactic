@@ -104,6 +104,9 @@ sub help {'meta theme [count]'}
 This module is a frontend to the L<Acme::MetaSyntactic> module which
 will let you pick metasyntactical variables names while chatting over IRC.
 
+This module takes inspiration from the first IRC metasyntactic bot:
+L<Bot::MetaSyntactic> in some of its behaviour and messages.
+
 =head1 IRC USAGE
 
 The bot will accept a number of commands:
@@ -152,5 +155,11 @@ return the list of available themes.
 return the list of categories of the given theme.
 
 =back
+
+=head1 SEE ALSO
+
+L<Acme::MetaSyntactic>,
+L<Bundle::MetaSyntactic>,
+L<Bot::MetaSyntactic>.
 
 =cut
