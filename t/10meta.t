@@ -133,6 +133,15 @@ my @tests = (
             '_nick'    => 'bam',
         } => join( ' ', 'Available themes:', Acme::MetaSyntactic->themes )
     ],
+    [   {   'body'     => 'meta this_theme_does_not_exist',
+            'raw_nick' => 'BooK!~book@d83-179-185-40.cust.tele2.fr',
+            'who'      => 'BooK',
+            'address'  => 'msg',
+            'channel'  => 'msg',
+            'raw_body' => 'meta themes?',
+            '_nick'    => 'bam',
+        } => 'No such theme: this_theme_does_not_exist'
+    ],
 );
 
 plan tests => @tests + 1;
