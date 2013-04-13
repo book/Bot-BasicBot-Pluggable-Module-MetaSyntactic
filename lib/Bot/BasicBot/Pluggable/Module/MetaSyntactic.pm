@@ -82,3 +82,49 @@ sub help {'meta theme [count]'}
 
 1;
 
+# ABSTRACT: IRC frontend to Acme::MetaSyntactic
+
+=head1 SYNOPSIS
+
+    < you> bot: meta batman
+    < bot> kapow
+
+=head1 DESCRIPTION
+
+This module is a frontend to the L<Acme::MetaSyntactic> module which
+will let you pick metasyntactical variables names while chatting over IRC.
+
+=head1 IRC USAGE
+
+The bot will accept a number of commands:
+
+=head2 Theme commands
+
+These commands return items from L<Acme::MetaSyntactic> themes.
+
+=over 4
+
+=item C<< meta <theme> [ <count> ] >>
+
+return one or more items from the theme.
+
+Items are picked at random from the list, and not repeated until the list
+is exhausted.
+
+This will pick the default category if the theme has multiple categories.
+
+If I<count> is C<0>, then the whole list if returned (which does not
+disturb the partially consumed list from the non-zero use case).
+Note that there is a limit to the number of items returned, so that the
+bot does not accidentaly spam a channel.
+
+=item C<< meta <theme>/<category> [ <count> ] >>
+
+return one or more items from the theme sub-categories.
+
+The bot maintains state for each theme/category, so items can be picked
+from sub-categories of the same theme independently.
+
+=back
+
+=cut
