@@ -61,7 +61,9 @@ sub told {
         $num = $self->{meta}{limit} if $num > $self->{meta}{limit};
         return join ' ', $self->{meta}{theme}{$command}->name($num);
     }
-    elsif ( $command =~ /^themes\?$/ ) {
+
+    # it's a command
+    elsif ( $command eq 'themes?' ) {
         return join ' ', 'Available themes:', $self->{meta}{main}->themes();
     }
 
