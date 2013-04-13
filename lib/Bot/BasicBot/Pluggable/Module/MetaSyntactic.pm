@@ -66,6 +66,18 @@ sub told {
     elsif ( $command eq 'themes?' ) {
         return join ' ', 'Available themes:', $self->{meta}{main}->themes();
     }
+    elsif ( $command eq 'categories?' ) {
+        return if !@args;
+        my $theme = shift @args;
+        $self->{meta}{theme}{$theme} //= _load_theme($theme);
+        return "No such theme: $theme"
+            if !$self->{meta}{main}->has_theme($theme);
+        return "Theme $theme does not have any categories"
+            if !$self->{meta}{theme}{$theme}
+                ->isa('Acme::MetaSyntactic::MultiList');
+        return join ' ', "Categories for $theme:",
+            sort $self->{meta}{theme}{$theme}->categories;
+    }
 
     # TODO: other commands
     # - version?            : list all versions

@@ -151,6 +151,33 @@ my @tests = (
             '_nick'    => 'bam',
         } => 'foo foobar fred fubar garply grault plugh quux qux thud waldo xyzzy bar baz corge foo foobar fred fubar garply grault plugh quux qux thud waldo xyzzy bar baz corge foo foobar fred fubar garply grault plugh quux qux thud waldo xyzzy bar baz corge foo foobar fred fubar garply grault plugh quux qux thud waldo xyzzy bar baz corge foo foobar fred fubar garply grault plugh quux qux thud waldo xyzzy bar baz corge foo foobar fred fubar garply grault plugh quux qux thud waldo xyzzy bar baz corge foo foobar fred fubar garply grault plugh quux qux thud'
     ],
+    [   {   'body'     => 'meta categories? foo',
+            'raw_nick' => 'BooK!~book@d83-179-185-40.cust.tele2.fr',
+            'who'      => 'BooK',
+            'address'  => 'msg',
+            'channel'  => 'msg',
+            'raw_body' => 'meta categories? foo',
+            '_nick'    => 'bam',
+        } => 'Categories for foo: en fr nl'
+    ],
+    [   {   'body'     => 'meta categories? contributors',
+            'raw_nick' => 'BooK!~book@d83-179-185-40.cust.tele2.fr',
+            'who'      => 'BooK',
+            'address'  => 'msg',
+            'channel'  => 'msg',
+            'raw_body' => 'meta categories? contributors',
+            '_nick'    => 'bam',
+        } => 'Theme contributors does not have any categories'
+    ],
+    [   {   'body'     => 'meta categories? this_theme_does_not_exist',
+            'raw_nick' => 'BooK!~book@d83-179-185-40.cust.tele2.fr',
+            'who'      => 'BooK',
+            'address'  => 'msg',
+            'channel'  => 'msg',
+            'raw_body' => 'meta categories? this_theme_does_not_exist',
+            '_nick'    => 'bam',
+        } => 'No such theme: this_theme_does_not_exist'
+    ],
 );
 
 plan tests => @tests + 1;
