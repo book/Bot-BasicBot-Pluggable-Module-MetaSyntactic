@@ -54,12 +54,7 @@ sub told {
     # it's a theme
     if ( $command =~ /^[\w\/]+$/ ) {
         my ( $theme, $category ) = split m'/', $command, 2;
-        $self->{meta}{theme}{$command} //= do {
-            my $module = "Acme::MetaSyntactic::$theme";
-            eval "require $module"
-                ? $module->new( ( category => $category )x!! $category )
-                : '';
-        };
+        $self->{meta}{theme}{$command} //= _load_theme($theme, $category);
         return "No such theme: $theme"
             if !$self->{meta}{main}->has_theme($theme);
         my $num = 0 + ( shift @args // 1 );
@@ -76,6 +71,14 @@ sub told {
     # - categories? <theme> : list all categories for the theme
 
     return;
+}
+
+sub _load_theme {
+    my ($theme, $category) = @_;
+    my $module = "Acme::MetaSyntactic::$theme";
+    return eval "require $module"
+        ? $module->new( ( category => $category ) x !!$category )
+        : '';
 }
 
 sub help {'meta theme [count]'}
