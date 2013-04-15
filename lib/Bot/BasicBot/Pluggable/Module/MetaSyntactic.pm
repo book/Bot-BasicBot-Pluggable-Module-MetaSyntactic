@@ -8,7 +8,6 @@ use Acme::MetaSyntactic ();
 use Text::Wrap;
 
 our @ISA     = qw(Bot::BasicBot::Pluggable::Module);
-our $VERSION = '0.01';
 
 sub init {
     my $self = shift;
