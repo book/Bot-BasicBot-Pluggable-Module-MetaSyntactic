@@ -71,7 +71,8 @@ sub told {
 
     # it's a command
     elsif ( $command eq 'themes?' ) {
-        return join ' ', 'Available themes:', $self->{meta}{main}->themes();
+        my @themes = $self->{meta}{main}->themes();
+        return join ' ', scalar @themes, 'themes available:', @themes;
     }
     elsif ( $command eq 'categories?' ) {
         return if !@args;

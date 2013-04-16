@@ -131,7 +131,7 @@ my @tests = (
             'channel'  => 'msg',
             'raw_body' => 'meta themes?',
             '_nick'    => 'bam',
-        } => join( ' ', 'Available themes:', Acme::MetaSyntactic->themes )
+        } => join( ' ', scalar Acme::MetaSyntactic->themes, 'themes available:', Acme::MetaSyntactic->themes )
     ],
     [   {   'body'     => 'meta this_theme_does_not_exist',
             'raw_nick' => 'BooK!~book@d83-179-185-40.cust.tele2.fr',
