@@ -9,6 +9,9 @@ use Text::Wrap;
 
 our @ISA     = qw(Bot::BasicBot::Pluggable::Module);
 
+my $META = Acme::MetaSyntactic->new()
+    or carp "fatal: Can't create new Acme::MetaSyntactic object";
+
 sub init {
     my $self = shift;
 
@@ -18,10 +21,6 @@ sub init {
     };
 
     $Text::Wrap::columns = $self->{meta}{wrap};
-
-    $self->{meta}{main} = Acme::MetaSyntactic->new()
-        or carp "fatal: Can't create new Acme::MetaSyntactic object"
-        and return undef;
 }
 
 sub told {
@@ -55,7 +54,7 @@ sub told {
         my ( $theme, $category ) = split m'/', $command, 2;
         $self->{meta}{theme}{$command} //= _load_theme($theme, $category);
         return "No such theme: $theme"
-            if !$self->{meta}{main}->has_theme($theme);
+            if !$META->has_theme($theme);
         if ( $category && $self->{meta}{theme}{$command}
             ->isa('Acme::MetaSyntactic::MultiList')
             && !grep { $_ eq $category }
@@ -71,7 +70,7 @@ sub told {
 
     # it's a command
     elsif ( $command eq 'themes?' ) {
-        my @themes = $self->{meta}{main}->themes();
+        my @themes = $META->themes();
         return join ' ', scalar @themes, 'themes available:', @themes;
     }
     elsif ( $command eq 'categories?' ) {
@@ -79,7 +78,7 @@ sub told {
         my $theme = shift @args;
         $self->{meta}{theme}{$theme} //= _load_theme($theme);
         return "No such theme: $theme"
-            if !$self->{meta}{main}->has_theme($theme);
+            if !$META->has_theme($theme);
         return "Theme $theme does not have any categories"
             if !$self->{meta}{theme}{$theme}
                 ->isa('Acme::MetaSyntactic::MultiList');
@@ -91,7 +90,7 @@ sub told {
 sub _load_theme {
     my ($theme, $category) = @_;
     my $module = "Acme::MetaSyntactic::$theme";
-    return eval "require $module"
+    return eval "require $module" || $META->has_theme($theme)
         ? $module->new( ( category => $category ) x !!$category )
         : '';
 }
