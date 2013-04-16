@@ -64,8 +64,16 @@ sub told {
             return "No such theme/category: $theme/$category";
         }
         my $num = 0 + ( shift @args // 1 );
+
+        # enforce the limit if explicitely asked for more
+        $num //= 1;
         $num = $self->{meta}{limit} if $num > $self->{meta}{limit};
-        return join ' ', $self->{meta}{theme}{$command}->name($num);
+
+        my $meta  = $self->{meta}{theme}{$command};
+        my @items = $meta->name($num);
+        splice @items, $self->{meta}{limit}    # enforce the limit
+            if @items > $self->{meta}{limit};
+        return join ' ', @items;
     }
 
     # it's a command
