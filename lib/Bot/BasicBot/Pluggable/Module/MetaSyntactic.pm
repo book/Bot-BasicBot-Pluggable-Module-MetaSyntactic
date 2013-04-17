@@ -65,14 +65,14 @@ sub told {
         }
 
         # compute the list of items
-        my ($num, $re);
+        my ( $num, $re );
         for my $arg (@args) {
             if ( $arg =~ /^[0-9]+$/ ) { $num //= $arg; }
             elsif ( $arg =~ m{^/([^\/]*)/$} ) {
                 $re = eval {qr/$1/}
                     or do { ( my $err = $@ ) =~ s/ at .*//s; return $err; }
             }
-            else { return "Can't use argument: $arg" }
+            else {return}    # can't parse this argument
         }
 
         # enforce the limit if explicitely asked for more

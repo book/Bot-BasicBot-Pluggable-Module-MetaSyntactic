@@ -241,6 +241,15 @@ my @tests = (
             '_nick'    => 'bam',
         } => 'Quantifier follows nothing in regex; marked by <-- HERE in m/* <-- HERE bar/'
     ],
+    [   {   'body'     => 'meta: foo bar baz',
+            'raw_nick' => 'BooK!~book@d83-179-185-40.cust.tele2.fr',
+            'who'      => 'BooK',
+            'address'  => 'msg',
+            'channel'  => 'msg',
+            'raw_body' => 'meta: foo bar baz',
+            '_nick'    => 'bam',
+        } => undef
+    ],
 );
 
 plan tests => @tests + 1;
