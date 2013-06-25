@@ -84,7 +84,8 @@ sub told {
         if ($re) {    # NOTE: the extra loop is never run if $num == 0
             @items = grep /$re/, @items;
             splice @items, $num if $num && @items > $num;
-            push @items, grep /$re/, $meta->name(0) while @items < $num;
+            push @items, grep /$re/, $meta->name(0)
+                while @items && @items < $num;
         }
         splice @items, $self->{meta}{limit}    # enforce the limit
             if @items > $self->{meta}{limit};
