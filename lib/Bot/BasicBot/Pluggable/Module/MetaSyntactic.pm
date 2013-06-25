@@ -188,7 +188,7 @@ return the list of available themes.
 
 =item C<meta categories? I<theme>>
 
-return the list of categories of the given theme.
+return the list of categories for the given theme.
 
 =back
 
