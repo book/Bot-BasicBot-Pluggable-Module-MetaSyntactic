@@ -50,7 +50,7 @@ sub told {
     return if !$command || !length $command;
 
     # it's a theme
-    if ( $command =~ /^[\w\/]+$/ ) {
+    if ( $command =~ /^[-\w\/]+$/ ) {
         my ( $theme, $category ) = split m'/', $command, 2;
         $self->{meta}{theme}{$command} //= _load_theme($theme, $category);
         return "No such theme: $theme"

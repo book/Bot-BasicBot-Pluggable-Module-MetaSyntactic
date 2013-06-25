@@ -5,7 +5,7 @@ use Bot::BasicBot::Pluggable::Module::MetaSyntactic;
 my $nick;
 
 # "alter" the shuffle method
-{
+BEGIN {
     no warnings;
     my ( $i, $j ) = ( 0, 0 );
     *List::Util::shuffle = sub { sort @_ };    # item selection
@@ -24,6 +24,24 @@ my $nick;
     sub ignore_nick { $_[1] eq 'ignore_me' }
     sub nick {$nick}
 }
+
+# add a theme with a category having a dash in its name
+package Acme::MetaSyntactic::bbpmm_category;
+use Acme::MetaSyntactic::MultiList;
+our @ISA = ('Acme::MetaSyntactic::MultiList');
+__PACKAGE__->init(
+    {   default => 'basic',
+        names   => {
+            'x-dashed' => "Saturn Earth Neptune",
+            basic      => "ununoctium manganese thallium",
+        }
+    }
+);
+
+# this is so ugly...
+$Acme::MetaSyntactic::META{bbpmm_category} = 1;
+
+package main;
 
 # test the told() method
 my @tests = (
