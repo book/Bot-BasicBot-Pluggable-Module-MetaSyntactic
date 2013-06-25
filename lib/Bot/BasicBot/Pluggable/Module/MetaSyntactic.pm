@@ -148,7 +148,7 @@ These commands return items from L<Acme::MetaSyntactic> themes.
 
 =over 4
 
-=item C<< meta <theme> [ <count> ] >>
+=item C<< meta <theme> [ <count> ] [ /regexp/ ] >>
 
 return one or more items from the theme.
 
@@ -157,12 +157,7 @@ is exhausted.
 
 This will pick the default category if the theme has multiple categories.
 
-If I<count> is C<0>, then the whole list if returned (which does not
-disturb the partially consumed list from the non-zero use case).
-Note that there is a limit to the number of items returned, so that the
-bot does not accidentaly spam a channel.
-
-=item C<< meta <theme>/<category> [ <count> ] >>
+=item C<< meta <theme>/<category> [ <count> ] [ /regexp/ ] >>
 
 return one or more items from the theme sub-categories.
 
@@ -170,6 +165,16 @@ The bot maintains state for each theme/category, so items can be picked
 from sub-categories of the same theme independently.
 
 =back
+
+If I<count> is C<0>, then the whole list if returned (which does not
+disturb the partially consumed list from the non-zero use case).
+Note that there is a limit to the number of items returned, so that the
+bot does not accidentaly spam a channel.
+
+If a I</regexp/> is given, only items that match the regular expression
+will be shown. With a I<count> of C<0>, I<all> matching items are
+returned.  The filtering is done on the whole list, so it has no influence
+on the state of non-filtered request (with regard to repetition).
 
 =head2 Meta (sic) commands
 
